@@ -25,10 +25,11 @@ private:
 	bool m_exitGame; // control exiting game
 
 	sf::CircleShape shape;
-	sf::Vector2f position = {400,400};
+	sf::Vector2f position = {400.f,600.f};
 	sf::RectangleShape base;
 	sf::Vector2f basePos={ 0.f, 600.f };
-
+	float timeTaken = {0.0f};
+	bool isInSky = {true};
 
 	sf::Vector2f velocity={ 0.f, 0.f };
 	sf::Vector2f gravity={ 0.f, 9.8f };

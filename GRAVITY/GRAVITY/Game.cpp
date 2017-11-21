@@ -69,6 +69,13 @@ void Game::processEvents()
 				m_exitGame = true;
 			}
 		}
+		if (sf::Event::KeyPressed == event.type)
+		{
+			if (sf::Keyboard::Space == event.key.code && !isInSky == false)
+			{
+				position.y -= 34.5;
+			}
+		}
 	}
 }
 
@@ -78,9 +85,15 @@ void Game::processEvents()
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
-	if (!shape.getGlobalBounds().intersects(base.getGlobalBounds()))
+	if (position.y <= 599.0)
 	{
-		position.y += gravity.y;
+		isInSky = false;
+		velocity.y = velocity.y + gravity.y*t_deltaTime.asSeconds();
+		position.y = position.y + (velocity.y*t_deltaTime.asSeconds()) + (0.5*gravity.y*t_deltaTime.asSeconds()* t_deltaTime.asSeconds());
+	}
+	else if ()
+	{
+		isInSky = true;
 	}
 
 	shape.setPosition(position);
