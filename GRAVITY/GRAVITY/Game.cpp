@@ -46,6 +46,7 @@ void Game::setUpShapes()
 	base.setFillColor(sf::Color::Blue);
 	base.setSize(sf::Vector2f(800, 200));
 	base.setPosition(basePos);
+
 }
 
 /// <summary>
@@ -71,9 +72,9 @@ void Game::processEvents()
 		}
 		if (sf::Event::KeyPressed == event.type)
 		{
-			if (sf::Keyboard::Space == event.key.code && !isInSky == false)
+			if (sf::Keyboard::Space == event.key.code && !inSky == false)
 			{
-				position.y -= 34.5;
+				position.y -= 100.f;
 			}
 		}
 	}
@@ -85,18 +86,21 @@ void Game::processEvents()
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
-	if (position.y <= 599.0)
+	velocity = velocity + gravity*t_deltaTime.asSeconds();
+
+	if (position.y <= 599.f)
 	{
-		isInSky = false;
-		velocity.y = velocity.y + gravity.y*t_deltaTime.asSeconds();
-		position.y = position.y + (velocity.y*t_deltaTime.asSeconds()) + (0.5*gravity.y*t_deltaTime.asSeconds()* t_deltaTime.asSeconds());
+		inSky = false;
+		position = position + (velocity*t_deltaTime.asSeconds()) + (0.5f*gravity*t_deltaTime.asSeconds()* t_deltaTime.asSeconds());
 	}
-	else if ()
+	else
 	{
-		isInSky = true;
+		inSky = true;
 	}
 
-	shape.setPosition(position);
+	
+
+      	shape.setPosition(position);
 
 	if (m_exitGame)
 	{

@@ -29,7 +29,10 @@ private:
 	sf::RectangleShape base;
 	sf::Vector2f basePos={ 0.f, 600.f };
 	float timeTaken = {0.0f};
-	bool isInSky = {true};
+	float myTimeTaken = { 0.0f };
+	float maxHeight = { 0.0f };
+	float myMaxHeight = { 0.0f };
+	bool inSky = {true};
 
 	sf::Vector2f velocity={ 0.f, 0.f };
 	sf::Vector2f gravity={ 0.f, 9.8f };
